@@ -1,2 +1,2 @@
 This repository contains a Verilog implementation of a toggle flip-flop (TFF) along with a custom testbench I wrote to verify its behavior. Yesterday, I created a simple circuit without a clock, and this is my first sequential design. The waveform screenshot included shows the TFF operation and clock toggling. You can find both the Verilog source files and the testbench here.
-![TFF waveform](tFF/tff.png)
+![TFF waveform](tff.png)
