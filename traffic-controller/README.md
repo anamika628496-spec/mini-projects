@@ -25,6 +25,9 @@ A synchronous traffic light controller implemented as a Moore finite state machi
 | yellow | output | 1 | High when in YELLOW state |
 | green | output | 1 | High when in GREEN state |
 
+## Waveform
+![Waveform](traffic_controller.jpeg)
+
 ## Verification — test cases covered
 
 1. Full natural cycle — Red → Yellow → Green → Red, confirming all transition thresholds.
