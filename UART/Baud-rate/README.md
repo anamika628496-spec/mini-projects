@@ -27,7 +27,14 @@ Directed testbench covering:
 
 Verified via `$monitor` text output and GTKWave waveform inspection of the internal `counter` signal. First pulse confirmed at exactly 325 clock cycles after reset release, matching hand calculation. Pulse confirmed exactly one cycle wide. Reset confirmed to correctly suppress pulse generation throughout multi-reset sequences.
 
-**Screenshots**  zoomed views of ![waveform1](Waveform1.png) (1) first pulse generation, ![waveform2](waveform2.png) (2) the multi-reset priority sequence, ![waveform3](waveform3.png) (3) final reset-vs-rollover edge case
+**Screenshots**  zoomed views of 
+![waveform1](Waveform1.png) 
+(1) first pulse generation 
+![waveform2](waveform2.png) 
+(2) the multi-reset priority sequence
+![waveform3](waveform3.png) 
+(3) final reset-vs-rollover edge case
+
 ## Bugs found and fixed during development
 
 - Off-by-one in rollover threshold (325 → 324) — counting 0 to N inclusive produces N+1 states, not N
