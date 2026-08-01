@@ -13,7 +13,7 @@ I specifically avoided using the baud pulse as a separate clock — instead it's
 - `UART_tx.v` — the actual transmitter
 - `baud_rate.v` — the baud rate generator, reused here
 - `UART_tx_tb.v` — testbench, running at the real timing (DIVISOR=325)
-- `UART_tx_tb_fast.v` — same tests, but with DIVISOR overridden to a small number so simulations run in a few seconds instead of forever
+- `UART_tx_tb_1.v` — same tests, but with DIVISOR overridden to a small number so simulations run in a few seconds instead of forever
 
 ## Interface
 
