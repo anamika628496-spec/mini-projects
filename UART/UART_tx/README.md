@@ -51,17 +51,13 @@ Checked all of this with `$monitor` output and in GTKWave. Waveform screenshots 
 
 **Real-timing testbench (DIVISOR=325):**
 
-![description here](waveforms/PLACEHOLDER_real_1.png)
-![description here](waveforms/PLACEHOLDER_real_2.png)
-![description here](waveforms/PLACEHOLDER_real_3.png)
-![description here](waveforms/PLACEHOLDER_real_4.png)
-![description here](waveforms/PLACEHOLDER_real_5.png)
+![description here](wave1.png)
+![description here](wave2.png)
 
 **Fast testbench (DIVISOR overridden):**
 
-![description here](waveforms/PLACEHOLDER_fast_1.png)
-![description here](waveforms/PLACEHOLDER_fast_2.png)
-![description here](waveforms/PLACEHOLDER_fast_3.png)
+![description here](wave3.png)
+![description here](wave4.png)
 
 ## Bugs I ran into along the way
 
