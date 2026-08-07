@@ -32,7 +32,11 @@ Back-to-back frames
 
 Verified with $monitor and by walking through the actual GTKWave output. I ended up adding a couple of "sticky" registers (got_data_out, got_error) in the testbench, since data_out and error are only high for one clock cycle, and my checks weren't always landing on that exact cycle - this way the testbench catches the pulse even if it happens to check a cycle or two later.
 
-Waveforms: see /waveforms - [add screenshot filenames here]
+Waveforms: see /waveforms - [1wave] 
+normal transmission: data_out correctly pulses high and the received data matches what was sent on data_in.
+
+
+
 
 
 
