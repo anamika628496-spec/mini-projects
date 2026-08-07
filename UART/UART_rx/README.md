@@ -32,12 +32,19 @@ Back-to-back frames
 
 Verified with $monitor and by walking through the actual GTKWave output. I ended up adding a couple of "sticky" registers (got_data_out, got_error) in the testbench, since data_out and error are only high for one clock cycle, and my checks weren't always landing on that exact cycle - this way the testbench catches the pulse even if it happens to check a cycle or two later.
 
-Waveforms: see /waveforms - [1wave] 
+Waveforms: 
+![description here](1wave.png)
 normal transmission: data_out correctly pulses high and the received data matches what was sent on data_in.
 
+![description here](2wave.png)
+a glitched stop bit correctly triggers error and a reset back to idle, and the very next byte sent right after is still correctly received, not stuck.
+
+![description here](3wave.png)
+reset asserted mid-frame correctly aborts the in-progress reception and cleanly returns to idle, ready to correctly capture the next byte.
+
+![description here](4wave.png)
+a glitched start bit occurring while a transmission is still ongoing can be misread as a new start bit, desyncing the frame and producing incorrect data — a known limitation of this simple design, not something this version handles.
 
 
-
-
-
+Tools:
 Icarus Verilog + GTKWave
