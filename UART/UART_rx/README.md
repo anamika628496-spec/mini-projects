@@ -53,3 +53,5 @@ a glitched start bit occurring while a transmission is still ongoing can be misr
 
 Tools:
 Icarus Verilog + GTKWave
+
+Additionally, novel_UART_RX_TB.v represents how this testbench would be written by an experienced personnel and similarly for novel_UART_RX for receiver code. This was generated to learn methods and clear distinct structure used, so that i can incorporate it in my new projects. 
