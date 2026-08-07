@@ -10,25 +10,30 @@ Once a start bit is confirmed, RX moves into reading the actual 8 data bits, the
 
 One thing that took me a while to fully get right: RX's own internal counter doesn't reset on a fixed timer, it resets right after each confirmation point. That actually turns out to matter a lot for testbench timing (more on that below).
 
-Files
-UART_rx.v - the design
-UART_rx_tb.v - testbench with 7 distinct test scenarios
-baud_rate.v - shared baud generator (same one from TX, parameterized DIVISOR)
-Interface
-Signal	Direction	Width	What it does
-clock	input	1	system clock
-reset	input	1	active-high reset
-data_in	input	1	the incoming serial line
-data	output	[7:0]	the received byte
-data_out	output	1	pulses high when a byte is successfully received
-error	output	1	pulses high if the stop bit didn't check out (framing error)
-Test cases
-Normal receive, a few different byte patterns (including all-0s and all-1s as edge cases)
-A glitched data bit - deliberately flipping the value right around the receiver's actual sample window, to make sure the majority vote genuinely resolves disagreement rather than just reading whatever value happens to be there
-A glitched stop bit, to check that error fires correctly and data_out doesn't
-A false start bit - a brief dip that shouldn't survive the majority vote, checking RX correctly goes back to idle instead of getting stuck
-Reset happening mid-transmission (used fork/join for this one, to run the byte-send and the reset trigger in parallel)
-Back-to-back frames
+## Files
+* `UART_rx.v` - the design
+* `UART_rx_tb.v` - testbench with 7 distinct test scenarios
+* `baud_rate.v` - shared baud generator (same one from TX, parameterized DIVISOR)
+
+## Interface
+
+| Signal | Direction | Width | What it does |
+|---|---|---|---|
+| clock | input | 1 | system clock |
+| reset | input | 1 | active-high reset |
+| data_in | input | 1 | the incoming serial line |
+| data | output | [7:0] | the received byte |
+| data_out | output | 1 | pulses high when a byte is successfully received |
+| error | output | 1 | pulses high if the stop bit didn't check out (framing error) |
+
+## Test cases
+
+* Normal receive, a few different byte patterns (including all-0s and all-1s as edge cases)
+* A glitched data bit - deliberately flipping the value right around the receiver's actual sample window, to make sure the majority vote genuinely resolves disagreement rather than just reading whatever value happens to be there
+* A glitched stop bit, to check that `error` fires correctly and `data_out` doesn't
+* A false start bit - a brief dip that shouldn't survive the majority vote, checking RX correctly goes back to idle instead of getting stuck
+* Reset happening mid-transmission (used `fork`/`join` for this one, to run the byte-send and the reset trigger in parallel)
+* Back-to-back frames
 
 Verified with $monitor and by walking through the actual GTKWave output. I ended up adding a couple of "sticky" registers (got_data_out, got_error) in the testbench, since data_out and error are only high for one clock cycle, and my checks weren't always landing on that exact cycle - this way the testbench catches the pulse even if it happens to check a cycle or two later.
 
